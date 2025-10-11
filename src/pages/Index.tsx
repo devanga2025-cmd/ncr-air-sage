@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Cloud, MapPin, TrendingUp, Users, FileText, CheckCircle } from "lucide-react";
+import { ArrowRight, Cloud, MapPin, TrendingUp, Users, FileText, CheckCircle, Sparkles, Brain, Zap, Shield } from "lucide-react";
 
 const Index = () => {
   const features = [
@@ -42,53 +42,72 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-sky">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+        <div className="absolute inset-0 bg-[image:var(--gradient-glow)] animate-pulse-slow"></div>
+        <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
+          <div className="max-w-4xl mx-auto text-center animate-slide-up">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-6">
-              <Cloud className="w-4 h-4 text-primary-foreground" />
-              <span className="text-sm font-medium text-primary-foreground">
-                Smart Pollution Management Platform
+              <Sparkles className="w-4 h-4 text-primary-foreground" />
+              <span className="text-sm font-semibold text-primary-foreground">
+                AI-Powered Environmental Intelligence Platform
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-primary-foreground mb-6">
+            <h1 className="text-6xl md:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
               Delhi-NCR AirSense
             </h1>
-            <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-              Tackling air quality crisis with AI analytics, satellite data, and citizen engagement
-              for evidence-based policymaking
+            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Transform pollution management with <span className="font-bold">real-time AI analytics</span>, 
+              satellite data integration, and <span className="font-bold">predictive forecasting</span>
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link to="/dashboard">
-                <Button size="lg" className="gap-2 shadow-glow bg-primary-foreground text-primary hover:bg-primary-foreground/90">
-                  View Dashboard
-                  <ArrowRight className="w-4 h-4" />
+                <Button size="lg" className="gap-2 shadow-elevated hover-lift bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-lg px-8 py-6">
+                  Explore Dashboard
+                  <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
               <Link to="/citizen">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="gap-2 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10"
+                  className="gap-2 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 hover-lift text-lg px-8 py-6"
                 >
-                  Citizen App
+                  Citizen Portal
                 </Button>
               </Link>
+            </div>
+            
+            {/* Feature Pills */}
+            <div className="flex flex-wrap gap-3 justify-center animate-fade-in">
+              {[
+                { icon: Brain, text: "AI Source Detection" },
+                { icon: TrendingUp, text: "72hr Forecasting" },
+                { icon: Shield, text: "Policy Insights" },
+                { icon: Zap, text: "Real-time Updates" }
+              ].map((feature, idx) => (
+                <div 
+                  key={idx}
+                  className="flex items-center gap-2 px-4 py-2 bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-full hover-lift"
+                >
+                  <feature.icon className="w-4 h-4 text-primary-foreground" />
+                  <span className="text-sm font-medium text-primary-foreground">{feature.text}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
       {/* Stats Section */}
-      <div className="container mx-auto px-4 -mt-12 relative z-20">
+      <div className="container mx-auto px-4 -mt-16 relative z-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat) => (
+          {stats.map((stat, idx) => (
             <Card
               key={stat.label}
-              className="p-6 shadow-glow bg-gradient-card backdrop-blur-sm border-border text-center"
+              className="p-8 shadow-elevated bg-gradient-card backdrop-blur-sm border-border text-center hover-lift group"
+              style={{ animationDelay: `${idx * 0.1}s` }}
             >
-              <div className="text-4xl font-bold mb-2 text-primary">{stat.value}</div>
-              <div className="font-medium mb-1">{stat.label}</div>
+              <div className="text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
+              <div className="font-semibold mb-1 text-lg">{stat.label}</div>
               <div className="text-sm text-muted-foreground">{stat.sublabel}</div>
             </Card>
           ))}
@@ -96,30 +115,38 @@ const Index = () => {
       </div>
 
       {/* Features Section */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Platform Features</h2>
+      <div className="container mx-auto px-4 py-24">
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Powered by <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Intelligence</span>
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive tools for monitoring, analyzing, and acting on air quality data
+            Comprehensive solutions for every stakeholder in pollution management
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {features.map((feature) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {features.map((feature, idx) => {
             const Icon = feature.icon;
             return (
               <Link key={feature.title} to={feature.link}>
-                <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border hover:shadow-glow transition-smooth h-full group cursor-pointer">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-smooth">
-                      <Icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold mb-2 flex items-center justify-between">
-                        {feature.title}
-                        <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-smooth" />
-                      </h3>
-                      <p className="text-muted-foreground">{feature.description}</p>
+                <Card 
+                  className="p-8 shadow-card bg-gradient-card backdrop-blur-sm border-border hover:shadow-elevated hover-lift h-full group cursor-pointer relative overflow-hidden"
+                  style={{ animationDelay: `${idx * 0.1}s` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-4">
+                      <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                        <Icon className="w-8 h-8 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold mb-3 flex items-center justify-between">
+                          {feature.title}
+                          <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-2 transition-all duration-300" />
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -129,39 +156,68 @@ const Index = () => {
         </div>
 
         {/* Data Sources */}
-        <Card className="p-8 shadow-card bg-gradient-card backdrop-blur-sm border-border">
-          <h3 className="text-2xl font-semibold mb-6 text-center">Integrated Data Sources</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-primary/10 flex items-center justify-center">
-                <CheckCircle className="w-8 h-8 text-primary" />
-              </div>
-              <h4 className="font-medium mb-1">Satellite Data</h4>
-              <p className="text-sm text-muted-foreground">NASA MODIS & ISRO NRSC</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-secondary/10 flex items-center justify-center">
-                <CheckCircle className="w-8 h-8 text-secondary" />
-              </div>
-              <h4 className="font-medium mb-1">Ground Monitors</h4>
-              <p className="text-sm text-muted-foreground">CPCB & DPCC Stations</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-accent/10 flex items-center justify-center">
-                <CheckCircle className="w-8 h-8 text-accent" />
-              </div>
-              <h4 className="font-medium mb-1">Weather Data</h4>
-              <p className="text-sm text-muted-foreground">IMD & OpenWeather</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-warning/10 flex items-center justify-center">
-                <CheckCircle className="w-8 h-8 text-warning" />
-              </div>
-              <h4 className="font-medium mb-1">Traffic Analytics</h4>
-              <p className="text-sm text-muted-foreground">Google Maps API</p>
+        <Card className="p-12 shadow-elevated bg-gradient-card backdrop-blur-sm border-border relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+          
+          <div className="relative z-10">
+            <h3 className="text-3xl font-bold mb-8 text-center">Integrated Data Sources</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                { icon: CheckCircle, label: "Satellite Data", sublabel: "NASA MODIS & ISRO NRSC", color: "primary" },
+                { icon: CheckCircle, label: "Ground Monitors", sublabel: "CPCB & DPCC Stations", color: "secondary" },
+                { icon: CheckCircle, label: "Weather Data", sublabel: "IMD & OpenWeather", color: "accent" },
+                { icon: CheckCircle, label: "Traffic Analytics", sublabel: "Google Maps API", color: "warning" }
+              ].map((source, idx) => (
+                <div 
+                  key={source.label} 
+                  className="text-center group hover-lift"
+                  style={{ animationDelay: `${idx * 0.1}s` }}
+                >
+                  <div className={`w-20 h-20 mx-auto mb-4 rounded-2xl bg-${source.color}/10 flex items-center justify-center group-hover:bg-${source.color}/20 transition-all duration-300 group-hover:scale-110`}>
+                    <source.icon className={`w-10 h-10 text-${source.color}`} />
+                  </div>
+                  <h4 className="font-bold mb-2 text-lg">{source.label}</h4>
+                  <p className="text-sm text-muted-foreground">{source.sublabel}</p>
+                </div>
+              ))}
             </div>
           </div>
         </Card>
+      </div>
+      
+      {/* CTA Section */}
+      <div className="py-24 px-4 relative overflow-hidden bg-muted/30">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10"></div>
+        <div className="absolute inset-0 bg-[image:var(--gradient-glow)]"></div>
+        
+        <div className="container mx-auto text-center relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <Sparkles className="w-16 h-16 text-primary mx-auto mb-6 animate-float" />
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to Make a <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Difference?</span>
+            </h2>
+            <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
+              Join thousands of citizens and policymakers working together for cleaner air. 
+              Start monitoring, reporting, and making data-driven decisions today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/citizen">
+                <Button size="lg" className="gap-2 shadow-elevated hover-lift text-lg px-8 py-6">
+                  <Sparkles className="w-5 h-5" />
+                  Get Started Now
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+              </Link>
+              <Link to="/policy">
+                <Button size="lg" variant="outline" className="gap-2 hover-lift text-lg px-8 py-6">
+                  <Shield className="w-5 h-5" />
+                  Policy Dashboard
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

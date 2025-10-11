@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Cloud, Home, MapPin, TrendingUp, Users, FileText } from "lucide-react";
+import { Cloud, Home, MapPin, TrendingUp, Users, FileText, Wind } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -16,14 +16,16 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="border-b border-border bg-card/50 backdrop-blur-lg sticky top-0 z-50">
+    <nav className="border-b border-border bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/80 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-gradient-sky flex items-center justify-center">
-              <Cloud className="w-6 h-6 text-primary-foreground" />
+          <Link to="/" className="flex items-center gap-2 font-bold text-xl group">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-glow">
+              <Wind className="w-5 h-5 text-white" />
             </div>
-            <span className="font-bold text-xl">AirSense NCR</span>
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              AirSense
+            </span>
           </Link>
 
           <div className="hidden md:flex items-center gap-1">
@@ -36,8 +38,8 @@ const Navigation = () => {
                     variant={isActive ? "default" : "ghost"}
                     size="sm"
                     className={cn(
-                      "gap-2 transition-smooth",
-                      isActive && "shadow-glow"
+                      "gap-2 transition-all duration-300",
+                      isActive ? "shadow-glow" : "hover:bg-primary/10"
                     )}
                   >
                     <Icon className="w-4 h-4" />
