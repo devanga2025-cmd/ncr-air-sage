@@ -22,6 +22,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { toast } from "sonner";
 
 const Policy = () => {
   const interventionData = [
@@ -83,6 +84,10 @@ const Policy = () => {
     return colors[priority] || "secondary";
   };
 
+  const handleExportReport = () => {
+    toast.success("Report exported successfully! Check your downloads folder.");
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -93,7 +98,7 @@ const Policy = () => {
               Data-driven insights and AI recommendations for evidence-based policymaking
             </p>
           </div>
-          <Button className="gap-2 shadow-glow">
+          <Button className="gap-2 shadow-glow" onClick={handleExportReport}>
             <Download className="w-4 h-4" />
             Export Report
           </Button>

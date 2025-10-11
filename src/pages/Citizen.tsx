@@ -11,6 +11,7 @@ import {
   Camera,
   Shield,
 } from "lucide-react";
+import { toast } from "sonner";
 
 const Citizen = () => {
   const nearbyAreas = [
@@ -61,6 +62,18 @@ const Citizen = () => {
     return "Hazardous";
   };
 
+  const handleChangeLocation = () => {
+    toast.info("Location change feature coming soon! You'll be able to select any area in Delhi-NCR.");
+  };
+
+  const handleFindRoute = () => {
+    toast.success("Analyzing air quality data to find the cleanest route for you...");
+  };
+
+  const handleReportPollution = () => {
+    toast.success("Camera opened! Take a photo of the pollution incident to report.");
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -81,7 +94,7 @@ const Citizen = () => {
               </div>
               <h3 className="text-3xl font-bold mb-1">Nehru Place, Delhi</h3>
             </div>
-            <Button variant="outline" size="sm" className="gap-2">
+            <Button variant="outline" size="sm" className="gap-2" onClick={handleChangeLocation}>
               <Navigation className="w-4 h-4" />
               Change Location
             </Button>
@@ -199,7 +212,7 @@ const Citizen = () => {
                   className="w-full px-4 py-2 border border-border rounded-lg bg-background"
                 />
               </div>
-              <Button className="w-full gap-2 shadow-glow">
+              <Button className="w-full gap-2 shadow-glow" onClick={handleFindRoute}>
                 <Navigation className="w-4 h-4" />
                 Find Cleanest Route
               </Button>
@@ -216,7 +229,7 @@ const Citizen = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Help improve air quality by reporting pollution incidents in your area
               </p>
-              <Button variant="outline" className="w-full gap-2">
+              <Button variant="outline" className="w-full gap-2" onClick={handleReportPollution}>
                 <Camera className="w-4 h-4" />
                 Take Photo & Report
               </Button>
