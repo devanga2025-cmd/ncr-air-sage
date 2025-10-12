@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import AirQualityChat from "@/components/AirQualityChat";
+import AirQualityNews from "@/components/AirQualityNews";
 
 const Citizen = () => {
   const nearbyAreas = [
@@ -434,6 +435,11 @@ const Citizen = () => {
             </div>
           </div>
         </Card>
+
+        {/* News Section */}
+        <div className="mt-8">
+          <AirQualityNews />
+        </div>
       </div>
 
       {/* AI Chat Assistant */}

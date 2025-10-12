@@ -15,6 +15,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import AirQualityNews from "@/components/AirQualityNews";
+import PollutantBreakdown from "@/components/PollutantBreakdown";
 
 const Dashboard = () => {
   // Dummy data for demonstration
@@ -157,7 +159,7 @@ const Dashboard = () => {
         </div>
 
         {/* Regional Comparison */}
-        <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border">
+        <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border mb-8">
           <h3 className="text-xl font-semibold mb-4">Regional AQI Comparison</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={regionData}>
@@ -175,6 +177,14 @@ const Dashboard = () => {
             </BarChart>
           </ResponsiveContainer>
         </Card>
+
+        {/* Pollutant Breakdown */}
+        <PollutantBreakdown />
+
+        {/* News Section */}
+        <div className="mt-8">
+          <AirQualityNews />
+        </div>
       </div>
     </div>
   );

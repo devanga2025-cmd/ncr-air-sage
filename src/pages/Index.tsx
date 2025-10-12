@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Cloud, MapPin, TrendingUp, Users, FileText, CheckCircle, Sparkles, Brain, Zap, Shield } from "lucide-react";
+import AirQualityNews from "@/components/AirQualityNews";
 
 const Index = () => {
   const features = [
@@ -184,6 +185,11 @@ const Index = () => {
             </div>
           </div>
         </Card>
+
+        {/* Latest News Section */}
+        <div className="mt-12">
+          <AirQualityNews />
+        </div>
       </div>
       
       {/* CTA Section */}
