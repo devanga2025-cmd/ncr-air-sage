@@ -1,0 +1,4 @@
+project_id = "bxvyqecuurexadbfptpc"
+
+[functions.air-quality-chat]
+verify_jwt = false
