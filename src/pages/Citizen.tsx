@@ -243,175 +243,51 @@ const Citizen = () => {
           </div>
         </div>
 
-        {/* Air Quality Guidelines */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border">
-            <h3 className="text-2xl font-semibold mb-4">Understanding AQI Levels</h3>
-            <div className="space-y-4">
-              <div className="p-4 border-l-4 border-green-500 bg-green-500/10 rounded-r-lg">
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold">Good (0-50)</h4>
-                  <Badge className="bg-green-500">Safe</Badge>
-                </div>
+        {/* Weather Impact */}
+        <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border mb-8">
+          <h3 className="text-2xl font-semibold mb-4">Weather Impact on AQI</h3>
+          <div className="space-y-4">
+            <div className="flex items-start gap-3">
+              <Wind className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold mb-1">Wind Speed & Direction</h4>
                 <p className="text-sm text-muted-foreground">
-                  Air quality is satisfactory, and air pollution poses little or no risk. Enjoy outdoor activities!
-                </p>
-              </div>
-
-              <div className="p-4 border-l-4 border-yellow-500 bg-yellow-500/10 rounded-r-lg">
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold">Moderate (51-100)</h4>
-                  <Badge className="bg-yellow-500">Acceptable</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Air quality is acceptable. Unusually sensitive people should consider reducing prolonged outdoor exertion.
-                </p>
-              </div>
-
-              <div className="p-4 border-l-4 border-orange-500 bg-orange-500/10 rounded-r-lg">
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold">Unhealthy for Sensitive Groups (101-200)</h4>
-                  <Badge className="bg-orange-500">Caution</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Children, elderly, and people with respiratory conditions should limit prolonged outdoor activities.
-                </p>
-              </div>
-
-              <div className="p-4 border-l-4 border-red-500 bg-red-500/10 rounded-r-lg">
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold">Unhealthy (201-300)</h4>
-                  <Badge className="bg-red-500">Unhealthy</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Everyone may experience health effects. Sensitive groups should avoid outdoor activities.
-                </p>
-              </div>
-
-              <div className="p-4 border-l-4 border-purple-500 bg-purple-500/10 rounded-r-lg">
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold">Very Unhealthy (301-400)</h4>
-                  <Badge className="bg-purple-500">Very Unhealthy</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Health alert! Everyone should avoid all outdoor physical activity. Stay indoors.
-                </p>
-              </div>
-
-              <div className="p-4 border-l-4 border-red-900 bg-red-900/10 rounded-r-lg">
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold">Hazardous (401+)</h4>
-                  <Badge className="bg-red-900">Emergency</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Health warnings of emergency conditions. Everyone should remain indoors and keep activity levels low.
+                  Strong winds help disperse pollutants. Wind from Punjab/Haryana can bring stubble burning smoke.
                 </p>
               </div>
             </div>
-          </Card>
 
-          <div className="space-y-8">
-            <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border">
-              <h3 className="text-2xl font-semibold mb-4">Safety Guidelines</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Shield className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Use Proper Masks</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Always wear N95 or N99 masks when AQI is above 150. Regular cloth or surgical masks won't protect against PM2.5 particles.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <Wind className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Use Air Purifiers</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Install HEPA air purifiers at home. Keep doors and windows closed during high pollution days.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <Activity className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Adjust Exercise Routine</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Avoid outdoor exercise when AQI is above 100. Exercise indoors or during early morning hours when AQI is typically lower.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <Droplets className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Stay Hydrated</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Drink plenty of water to help your body flush out toxins. Include immunity-boosting foods in your diet.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <Heart className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Vulnerable Groups Protection</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Children, elderly, pregnant women, and people with respiratory/heart conditions should take extra precautions.
-                    </p>
-                  </div>
-                </div>
+            <div className="flex items-start gap-3">
+              <Droplets className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold mb-1">Humidity & Rain</h4>
+                <p className="text-sm text-muted-foreground">
+                  Rain washes away pollutants temporarily. High humidity can trap pollutants near the ground.
+                </p>
               </div>
-            </Card>
+            </div>
 
-            <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border">
-              <h3 className="text-2xl font-semibold mb-4">Weather Impact on AQI</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Wind className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Wind Speed & Direction</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Strong winds help disperse pollutants. Wind from Punjab/Haryana can bring stubble burning smoke.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <Droplets className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Humidity & Rain</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Rain washes away pollutants temporarily. High humidity can trap pollutants near the ground.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <Thermometer className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Temperature Inversion</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Cold winter mornings trap pollution close to ground. AQI typically improves by afternoon.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <Sun className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Seasonal Patterns</h4>
-                    <p className="text-sm text-muted-foreground">
-                      October-January: Worst pollution due to stubble burning, firecrackers, and low wind. March-September: Better air quality.
-                    </p>
-                  </div>
-                </div>
+            <div className="flex items-start gap-3">
+              <Thermometer className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold mb-1">Temperature Inversion</h4>
+                <p className="text-sm text-muted-foreground">
+                  Cold winter mornings trap pollution close to ground. AQI typically improves by afternoon.
+                </p>
               </div>
-            </Card>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <Sun className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold mb-1">Seasonal Patterns</h4>
+                <p className="text-sm text-muted-foreground">
+                  October-January: Worst pollution due to stubble burning, firecrackers, and low wind. March-September: Better air quality.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
+        </Card>
 
         {/* Community Stats */}
         <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border">
