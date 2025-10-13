@@ -104,7 +104,8 @@ const Index = () => {
           {stats.map((stat, idx) => (
             <Card
               key={stat.label}
-              className="p-8 shadow-elevated bg-gradient-card backdrop-blur-sm border-border text-center hover-lift group"
+              variant="gradient"
+              className="p-8 text-center group"
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
               <div className="text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
@@ -132,7 +133,8 @@ const Index = () => {
             return (
               <Link key={feature.title} to={feature.link}>
                 <Card 
-                  className="p-8 shadow-card bg-gradient-card backdrop-blur-sm border-border hover:shadow-elevated hover-lift h-full group cursor-pointer relative overflow-hidden"
+                  variant="glow"
+                  className="p-8 h-full cursor-pointer"
                   style={{ animationDelay: `${idx * 0.1}s` }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -157,7 +159,7 @@ const Index = () => {
         </div>
 
         {/* Data Sources */}
-        <Card className="p-12 shadow-elevated bg-gradient-card backdrop-blur-sm border-border relative overflow-hidden">
+        <Card variant="elevated" className="p-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
           
@@ -186,8 +188,99 @@ const Index = () => {
           </div>
         </Card>
 
+        {/* Key Points for Delhi Citizens */}
+        <div className="mt-24">
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Essential <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Safety Tips</span> for Delhi
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Quick actionable steps to protect yourself and your family from air pollution
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Shield,
+                title: "Use N95/N99 Masks",
+                points: ["Wear outdoors when AQI > 150", "Change every 8-12 hours", "Ensure proper fit"],
+                color: "from-primary/20 to-primary/5",
+                iconBg: "bg-primary/10",
+                iconColor: "text-primary"
+              },
+              {
+                icon: Cloud,
+                title: "Monitor Indoor Air",
+                points: ["Use air purifiers with HEPA filters", "Keep windows closed in peak hours", "Indoor plants help absorb toxins"],
+                color: "from-secondary/20 to-secondary/5",
+                iconBg: "bg-secondary/10",
+                iconColor: "text-secondary"
+              },
+              {
+                icon: TrendingUp,
+                title: "Check AQI Daily",
+                points: ["Plan outdoor activities accordingly", "Avoid morning hours (6-9 AM)", "Use AirSense forecasts for planning"],
+                color: "from-accent/20 to-accent/5",
+                iconBg: "bg-accent/10",
+                iconColor: "text-accent"
+              },
+              {
+                icon: Users,
+                title: "Protect Vulnerable Groups",
+                points: ["Children & elderly stay indoors", "Pregnant women take extra precautions", "Consult doctors for respiratory issues"],
+                color: "from-warning/20 to-warning/5",
+                iconBg: "bg-warning/10",
+                iconColor: "text-warning"
+              },
+              {
+                icon: Zap,
+                title: "Reduce Your Footprint",
+                points: ["Use public transport or carpool", "Avoid burning waste or crackers", "Report pollution sources via app"],
+                color: "from-destructive/20 to-destructive/5",
+                iconBg: "bg-destructive/10",
+                iconColor: "text-destructive"
+              },
+              {
+                icon: Brain,
+                title: "Stay Informed",
+                points: ["Enable health alerts in AirSense", "Follow government advisories", "Join community clean air initiatives"],
+                color: "from-primary/20 to-secondary/5",
+                iconBg: "bg-gradient-to-br from-primary/10 to-secondary/10",
+                iconColor: "text-primary"
+              }
+            ].map((tip, idx) => (
+              <Card
+                key={tip.title}
+                variant="animated"
+                className="p-6 relative overflow-hidden group"
+                style={{ animationDelay: `${idx * 0.1}s` }}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${tip.color} opacity-50 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                
+                <div className="relative z-10">
+                  <div className={`w-14 h-14 rounded-xl ${tip.iconBg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <tip.icon className={`w-7 h-7 ${tip.iconColor}`} />
+                  </div>
+                  
+                  <h3 className="text-xl font-bold mb-4">{tip.title}</h3>
+                  
+                  <ul className="space-y-2">
+                    {tip.points.map((point, pointIdx) => (
+                      <li key={pointIdx} className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground leading-relaxed">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         {/* Latest News Section */}
-        <div className="mt-12">
+        <div className="mt-24">
           <AirQualityNews />
         </div>
       </div>
