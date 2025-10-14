@@ -49,17 +49,6 @@ const Navigation = () => {
                 </Link>
               );
             })}
-            
-            <Link to="/contact">
-              <Button
-                variant={location.pathname === "/contact" ? "default" : "outline"}
-                size="sm"
-                className="gap-2 ml-2 hover-lift shadow-glow"
-              >
-                <Phone className="w-4 h-4" />
-                Contact Us
-              </Button>
-            </Link>
           </div>
         </div>
       </div>
