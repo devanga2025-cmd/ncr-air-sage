@@ -1,10 +1,32 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Cloud, MapPin, TrendingUp, Users, FileText, CheckCircle, Sparkles, Brain, Zap, Shield, Phone } from "lucide-react";
+import { ArrowRight, Cloud, MapPin, TrendingUp, Users, FileText, CheckCircle, Sparkles, Brain, Zap, Shield, Phone, LogOut } from "lucide-react";
 import AirQualityNews from "@/components/AirQualityNews";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast({
+        title: "Error signing out",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Signed out successfully",
+        description: "You have been logged out.",
+      });
+      navigate("/");
+    }
+  };
   const features = [
     {
       icon: MapPin,
@@ -41,6 +63,19 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Logout Button - Fixed Position */}
+      <div className="fixed top-20 right-4 z-50">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleLogout}
+          className="gap-2 shadow-elevated hover-lift"
+        >
+          <LogOut className="w-4 h-4" />
+          Logout
+        </Button>
+      </div>
+
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-sky">
         <div className="absolute inset-0 bg-[image:var(--gradient-glow)] animate-pulse-slow"></div>
