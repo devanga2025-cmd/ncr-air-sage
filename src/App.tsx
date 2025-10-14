@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
+import Auth from "./pages/Auth";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Sources from "./pages/Sources";
@@ -22,16 +23,16 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Navigation />
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/sources" element={<Sources />} />
-          <Route path="/forecast" element={<Forecast />} />
-          <Route path="/citizen" element={<Citizen />} />
-          <Route path="/policy" element={<Policy />} />
-          <Route path="/safety-guidelines" element={<SafetyGuidelines />} />
-          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/" element={<Auth />} />
+          <Route path="/home" element={<><Navigation /><Index /></>} />
+          <Route path="/dashboard" element={<><Navigation /><Dashboard /></>} />
+          <Route path="/sources" element={<><Navigation /><Sources /></>} />
+          <Route path="/forecast" element={<><Navigation /><Forecast /></>} />
+          <Route path="/citizen" element={<><Navigation /><Citizen /></>} />
+          <Route path="/policy" element={<><Navigation /><Policy /></>} />
+          <Route path="/safety-guidelines" element={<><Navigation /><SafetyGuidelines /></>} />
+          <Route path="/contact" element={<><Navigation /><ContactUs /></>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
