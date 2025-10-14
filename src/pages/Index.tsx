@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Cloud, MapPin, TrendingUp, Users, FileText, CheckCircle, Sparkles, Brain, Zap, Shield } from "lucide-react";
+import { ArrowRight, Cloud, MapPin, TrendingUp, Users, FileText, CheckCircle, Sparkles, Brain, Zap, Shield, Phone } from "lucide-react";
 import AirQualityNews from "@/components/AirQualityNews";
 
 const Index = () => {
@@ -312,6 +312,12 @@ const Index = () => {
                 <Button size="lg" variant="outline" className="gap-2 hover-lift text-lg px-8 py-6">
                   <Shield className="w-5 h-5" />
                   Policy Dashboard
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button size="lg" variant="secondary" className="gap-2 hover-lift text-lg px-8 py-6">
+                  <Phone className="w-5 h-5" />
+                  Contact Us
                 </Button>
               </Link>
             </div>
