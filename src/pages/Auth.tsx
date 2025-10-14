@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Wind, Mail, Lock, Chrome } from "lucide-react";
 import delhiPollution from "@/assets/delhi-air-pollution.jpg";
+import delhiLogo from "@/assets/delhi-icon-logo.png";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -125,8 +126,17 @@ const Auth = () => {
       </div>
 
       {/* Right side - Auth forms */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-background">
-        <Card variant="elevated" className="w-full max-w-md p-8 space-y-6">
+      <div className="flex-1 flex items-center justify-center p-8 bg-background relative overflow-hidden">
+        {/* Delhi Logo Background */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-5">
+          <img 
+            src={delhiLogo} 
+            alt="" 
+            className="w-96 h-96 object-contain"
+          />
+        </div>
+        
+        <Card variant="elevated" className="w-full max-w-md p-8 space-y-6 relative z-10">
           <div className="text-center space-y-2">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Wind className="w-8 h-8 text-primary" />
