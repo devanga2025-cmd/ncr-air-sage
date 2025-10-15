@@ -18,6 +18,7 @@ import {
 import { toast } from "sonner";
 import AirQualityChat from "@/components/AirQualityChat";
 import AirQualityNews from "@/components/AirQualityNews";
+import CitizenMap from "@/components/CitizenMap";
 
 const Citizen = () => {
   const nearbyAreas = [
@@ -81,17 +82,25 @@ const Citizen = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Citizen Air Quality App</h1>
-          <p className="text-muted-foreground">
+        <div className="mb-8 text-center">
+          <h1 className="text-5xl font-bold mb-3 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-fade-in">
+            Citizen Air Quality App
+          </h1>
+          <p className="text-lg text-muted-foreground">
             Real-time hyperlocal pollution data and personalized health guidance
           </p>
         </div>
 
+        {/* Interactive Map Section */}
+        <div className="mb-8 animate-slide-up">
+          <h3 className="text-2xl font-semibold mb-4">Delhi-NCR AQI Map</h3>
+          <CitizenMap />
+        </div>
+
         {/* Current Location AQI */}
-        <Card className="p-8 shadow-glow bg-gradient-card backdrop-blur-sm border-border mb-8">
+        <Card className="p-8 shadow-glow bg-gradient-card backdrop-blur-sm border-primary/20 border-2 mb-8 animate-slide-up hover-lift">
           <div className="flex items-start justify-between mb-6">
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -108,8 +117,10 @@ const Citizen = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="col-span-1">
-              <div className="text-6xl font-bold text-destructive mb-2">312</div>
-              <Badge variant="destructive" className="text-base px-3 py-1">
+              <div className="text-7xl font-bold bg-gradient-to-br from-destructive to-accent bg-clip-text text-transparent mb-2 animate-pulse">
+                312
+              </div>
+              <Badge variant="destructive" className="text-base px-4 py-1.5 shadow-glow">
                 Hazardous
               </Badge>
               <p className="text-sm text-muted-foreground mt-2">
@@ -148,15 +159,18 @@ const Citizen = () => {
         </Card>
 
         {/* Health Recommendations */}
-        <div className="mb-8">
-          <h3 className="text-2xl font-semibold mb-4">Personalized Health Recommendations</h3>
+        <div className="mb-8 animate-fade-in">
+          <h3 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+            <Heart className="w-6 h-6 text-primary" />
+            Personalized Health Recommendations
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {healthRecommendations.map((rec) => {
               const Icon = rec.icon;
               return (
                 <Card
                   key={rec.title}
-                  className="p-4 shadow-card bg-gradient-card backdrop-blur-sm border-border"
+                  className="p-5 shadow-card bg-gradient-card backdrop-blur-sm border-primary/10 border hover-lift transition-smooth"
                 >
                   <div className="flex items-start gap-3">
                     <div className={`w-10 h-10 rounded-lg ${rec.priority === 'high' ? 'bg-destructive/10' : 'bg-primary/10'} flex items-center justify-center flex-shrink-0`}>
@@ -290,23 +304,23 @@ const Citizen = () => {
         </Card>
 
         {/* Community Stats */}
-        <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border">
-          <h3 className="text-2xl font-semibold mb-4">Community Impact</h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-1">1,247</div>
+        <Card className="p-8 shadow-glow bg-gradient-card backdrop-blur-sm border-primary/20 border-2 hover-lift">
+          <h3 className="text-2xl font-semibold mb-6 text-center">Community Impact</h3>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="text-center p-4 rounded-lg bg-primary/10">
+              <div className="text-4xl font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-2">1,247</div>
               <div className="text-sm text-muted-foreground">Active Users Today</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-secondary mb-1">89</div>
+            <div className="text-center p-4 rounded-lg bg-secondary/10">
+              <div className="text-4xl font-bold bg-gradient-to-br from-secondary to-accent bg-clip-text text-transparent mb-2">89</div>
               <div className="text-sm text-muted-foreground">Pollution Reports</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent mb-1">3,421</div>
+            <div className="text-center p-4 rounded-lg bg-accent/10">
+              <div className="text-4xl font-bold bg-gradient-to-br from-accent to-primary bg-clip-text text-transparent mb-2">3,421</div>
               <div className="text-sm text-muted-foreground">Safe Routes Found</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-destructive mb-1">156K</div>
+            <div className="text-center p-4 rounded-lg bg-destructive/10">
+              <div className="text-4xl font-bold bg-gradient-to-br from-destructive to-accent bg-clip-text text-transparent mb-2">156K</div>
               <div className="text-sm text-muted-foreground">People Protected</div>
             </div>
           </div>

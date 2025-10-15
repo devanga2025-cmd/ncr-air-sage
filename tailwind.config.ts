@@ -70,6 +70,7 @@ export default {
       boxShadow: {
         'glow': 'var(--shadow-glow)',
         'card': 'var(--shadow-card)',
+        'elevated': 'var(--shadow-elevated)',
       },
       transitionProperty: {
         'smooth': 'var(--transition-smooth)',
