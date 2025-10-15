@@ -18,7 +18,6 @@ import {
 import { toast } from "sonner";
 import AirQualityChat from "@/components/AirQualityChat";
 import AirQualityNews from "@/components/AirQualityNews";
-import CitizenMap from "@/components/CitizenMap";
 
 const Citizen = () => {
   const nearbyAreas = [
@@ -96,7 +95,18 @@ const Citizen = () => {
         {/* Interactive Map Section */}
         <div className="mb-8 animate-slide-up">
           <h3 className="text-2xl font-semibold mb-4">Delhi-NCR AQI Map</h3>
-          <CitizenMap />
+          <div className="relative w-full h-[500px] rounded-lg overflow-hidden shadow-elevated border border-border">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d1820402.8260961175!2d77.54600048069878!3d28.807505915586578!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1760494809243!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0"
+            />
+          </div>
         </div>
 
         {/* Current Location AQI */}
