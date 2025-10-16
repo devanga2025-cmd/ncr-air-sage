@@ -18,80 +18,85 @@ import {
   Legend,
 } from "recharts";
 import { AlertCircle, Wind, Factory, Car, Flame } from "lucide-react";
+import { getLatestData, getRecentTrend, getPollutantStatus } from "@/utils/airQualityData";
+import { useMemo } from "react";
 
 const PollutantBreakdown = () => {
-  const pollutantLevels = [
+  const latestData = useMemo(() => getLatestData(), []);
+  const trendData = useMemo(() => getRecentTrend(24), []);
+  
+  const pollutantLevels = useMemo(() => [
     { 
       name: "PM2.5", 
-      current: 189, 
+      current: latestData.pm25, 
       safe: 60, 
       icon: Wind,
-      status: "Severe",
+      status: getPollutantStatus(latestData.pm25, "pm25"),
       health: "Primary cause of respiratory issues",
       source: "Vehicles, burning, dust",
     },
     { 
       name: "PM10", 
-      current: 312, 
+      current: latestData.pm10, 
       safe: 100, 
       icon: Factory,
-      status: "Severe",
+      status: getPollutantStatus(latestData.pm10, "pm10"),
       health: "Causes lung inflammation",
       source: "Construction, industrial dust",
     },
     { 
       name: "NO2", 
-      current: 78, 
+      current: latestData.no2, 
       safe: 80, 
       icon: Car,
-      status: "Moderate",
+      status: getPollutantStatus(latestData.no2, "no2"),
       health: "Aggravates asthma",
       source: "Vehicle emissions",
     },
     { 
       name: "SO2", 
-      current: 42, 
+      current: latestData.so2, 
       safe: 80, 
       icon: Factory,
-      status: "Good",
+      status: getPollutantStatus(latestData.so2, "so2"),
       health: "Respiratory irritant",
       source: "Industrial emissions",
     },
     { 
       name: "CO", 
-      current: 1.8, 
+      current: latestData.co, 
       safe: 2.0, 
       icon: Car,
-      status: "Good",
+      status: getPollutantStatus(latestData.co, "co"),
       health: "Reduces oxygen delivery",
       source: "Incomplete combustion",
     },
     { 
       name: "O3", 
-      current: 65, 
+      current: latestData.ozone, 
       safe: 100, 
       icon: Flame,
-      status: "Moderate",
+      status: getPollutantStatus(latestData.ozone, "ozone"),
       health: "Lung tissue damage",
       source: "Sunlight + pollutants",
     },
-  ];
+  ], [latestData]);
 
-  const hourlyPollutants = [
-    { time: "00:00", pm25: 156, pm10: 289, no2: 72 },
-    { time: "04:00", pm25: 178, pm10: 312, no2: 68 },
-    { time: "08:00", pm25: 245, pm10: 398, no2: 89 },
-    { time: "12:00", pm25: 289, pm10: 445, no2: 95 },
-    { time: "16:00", pm25: 312, pm10: 478, no2: 102 },
-    { time: "20:00", pm25: 267, pm10: 423, no2: 87 },
-  ];
+  const hourlyPollutants = useMemo(() => {
+    return trendData.map((d) => ({
+      time: `${d.date}/${d.month}`,
+      pm25: Math.round(d.pm25),
+      pm10: Math.round(d.pm10),
+      no2: Math.round(d.no2),
+    }));
+  }, [trendData]);
 
-  const pollutantComparison = [
-    { pollutant: "PM2.5", Delhi: 189, Mumbai: 98, Bangalore: 65, safe: 60 },
-    { pollutant: "PM10", Delhi: 312, Mumbai: 145, Bangalore: 89, safe: 100 },
-    { pollutant: "NO2", Delhi: 78, Mumbai: 62, Bangalore: 48, safe: 80 },
-    { pollutant: "O3", Delhi: 65, Mumbai: 72, Bangalore: 58, safe: 100 },
-  ];
+  const pollutantComparison = useMemo(() => [
+    { pollutant: "PM2.5", Delhi: Math.round(latestData.pm25), Mumbai: 98, Bangalore: 65, safe: 60 },
+    { pollutant: "PM10", Delhi: Math.round(latestData.pm10), Mumbai: 145, Bangalore: 89, safe: 100 },
+    { pollutant: "NO2", Delhi: Math.round(latestData.no2), Mumbai: 62, Bangalore: 48, safe: 80 },
+    { pollutant: "O3", Delhi: Math.round(latestData.ozone), Mumbai: 72, Bangalore: 58, safe: 100 },
+  ], [latestData]);
 
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {

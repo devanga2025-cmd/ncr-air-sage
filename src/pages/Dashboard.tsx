@@ -17,41 +17,39 @@ import {
 } from "recharts";
 import AirQualityNews from "@/components/AirQualityNews";
 import PollutantBreakdown from "@/components/PollutantBreakdown";
+import { getLatestData, getRecentTrend, getAQIStatus } from "@/utils/airQualityData";
+import { useMemo } from "react";
 
 const Dashboard = () => {
-  // Dummy data for demonstration
-  const aqiData = [
-    { time: "00:00", aqi: 156 },
-    { time: "04:00", aqi: 178 },
-    { time: "08:00", aqi: 245 },
-    { time: "12:00", aqi: 289 },
-    { time: "16:00", aqi: 312 },
-    { time: "20:00", aqi: 267 },
-  ];
+  const latestData = useMemo(() => getLatestData(), []);
+  const trendData = useMemo(() => getRecentTrend(24), []);
+  
+  const aqiData = useMemo(() => {
+    return trendData.map((d) => ({
+      time: `${d.date}/${d.month}`,
+      aqi: Math.round(d.aqi),
+    }));
+  }, [trendData]);
 
-  const sourceData = [
-    { source: "Stubble Burning", value: 35, color: "hsl(var(--destructive))" },
-    { source: "Vehicular", value: 28, color: "hsl(var(--warning))" },
-    { source: "Industrial", value: 22, color: "hsl(var(--accent))" },
-    { source: "Construction", value: 15, color: "hsl(var(--primary))" },
-  ];
+  const sourceData = useMemo(() => {
+    const total = latestData.pm25 + latestData.pm10 + latestData.no2 + latestData.co + latestData.ozone;
+    return [
+      { source: "PM2.5", value: Math.round((latestData.pm25 / total) * 100), color: "hsl(var(--destructive))" },
+      { source: "PM10", value: Math.round((latestData.pm10 / total) * 100), color: "hsl(var(--warning))" },
+      { source: "NO2", value: Math.round((latestData.no2 / total) * 100), color: "hsl(var(--accent))" },
+      { source: "CO", value: Math.round((latestData.co / total) * 100), color: "hsl(var(--primary))" },
+    ];
+  }, [latestData]);
 
-  const regionData = [
-    { region: "Delhi Central", aqi: 312 },
-    { region: "Gurgaon", aqi: 289 },
-    { region: "Noida", aqi: 267 },
-    { region: "Faridabad", aqi: 245 },
-    { region: "Ghaziabad", aqi: 278 },
-  ];
+  const regionData = useMemo(() => {
+    const recent = getRecentTrend(5);
+    return recent.map((d, idx) => ({
+      region: ["Delhi Central", "Gurgaon", "Noida", "Faridabad", "Ghaziabad"][idx] || `Area ${idx + 1}`,
+      aqi: Math.round(d.aqi),
+    }));
+  }, []);
 
-  const getAQIStatus = (aqi: number) => {
-    if (aqi <= 50) return { label: "Good", color: "text-success" };
-    if (aqi <= 100) return { label: "Moderate", color: "text-accent" };
-    if (aqi <= 200) return { label: "Unhealthy", color: "text-warning" };
-    return { label: "Hazardous", color: "text-destructive" };
-  };
-
-  const currentAQI = 312;
+  const currentAQI = Math.round(latestData.aqi);
   const status = getAQIStatus(currentAQI);
 
   return (
@@ -78,8 +76,8 @@ const Dashboard = () => {
               <Wind className="w-8 h-8 text-secondary" />
               <span className="text-sm font-medium text-secondary">Active</span>
             </div>
-            <div className="text-3xl font-bold mb-1">42</div>
-            <div className="text-sm text-muted-foreground">Monitoring Stations</div>
+            <div className="text-3xl font-bold mb-1">{Math.round(latestData.pm25)}</div>
+            <div className="text-sm text-muted-foreground">PM2.5 (μg/m³)</div>
           </Card>
 
           <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border">
@@ -87,17 +85,17 @@ const Dashboard = () => {
               <AlertTriangle className="w-8 h-8 text-destructive" />
               <span className="text-sm font-medium text-destructive">Critical</span>
             </div>
-            <div className="text-3xl font-bold mb-1">8</div>
-            <div className="text-sm text-muted-foreground">Pollution Hotspots</div>
+            <div className="text-3xl font-bold mb-1">{Math.round(latestData.pm10)}</div>
+            <div className="text-sm text-muted-foreground">PM10 (μg/m³)</div>
           </Card>
 
           <Card className="p-6 shadow-card bg-gradient-card backdrop-blur-sm border-border">
             <div className="flex items-center justify-between mb-4">
               <TrendingDown className="w-8 h-8 text-warning" />
-              <span className="text-sm font-medium text-warning">-12%</span>
+              <span className="text-sm font-medium text-warning">NO2</span>
             </div>
-            <div className="text-3xl font-bold mb-1">35%</div>
-            <div className="text-sm text-muted-foreground">From Stubble Burning</div>
+            <div className="text-3xl font-bold mb-1">{Math.round(latestData.no2)}</div>
+            <div className="text-sm text-muted-foreground">NO2 (μg/m³)</div>
           </Card>
         </div>
 
